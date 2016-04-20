@@ -19,6 +19,6 @@ if [ -d '/home/nicolas' ]
 then  
     echo "Le repertoire existe"  
 else  
-    echo "Le repertoire n'existe pas"  
+	echo "Le repertoire n'existe pas"  
 fi  
 ---
