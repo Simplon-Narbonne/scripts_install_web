@@ -8,7 +8,8 @@ Un "echo $1" dans le script affichera "monNouveauSite"
 
 Créer un répertoire:
 
-mkdir /var/www/$1 Pour télécharger un zip par exemple : wget http://files.spip.org/spip/stable/spip.zip
+mkdir /var/www/$1 Pour télécharger un zip
+par exemple : wget http://files.spip.org/spip/stable/spip.zip
 
 Dézipper : unzip -d spip$1 spip.zip
 
