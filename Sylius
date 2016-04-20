@@ -1,0 +1,11 @@
+[user]$ curl -sS https://getcomposer.org/installer | php
+[user]$ sudo mv composer.phar /usr/local/bin/composer
+
+[user]$ cd ~/
+[user]$ composer create-project sylius/sylius:v0.14.0
+
+
+
+source: https://www.rosehosting.com/blog/install-sylius-on-a-debian-8-vps/
+
+***** En cour de création ****
