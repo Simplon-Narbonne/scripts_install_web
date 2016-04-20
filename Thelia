@@ -27,3 +27,5 @@ HTTPDUSER=`ps aux | grep bin | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]gi
 echo $HTTPDUSER
 sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX  /var/www/html/$nomdudossier/cache /var/www/html/$nomdudossier/log /var/www/html/$nomdudossier/web /var/www/html/$nomdudossier/local
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX  /var/www/html/$nomdudossier/cache /var/www/html/$nomdudossier/log /var/www/html/$nomdudossier/web /var/www/html/$nomdudossier/local
+
+php /var/www/html/$nomdudossier/Thelia admin:create
