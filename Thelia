@@ -1,0 +1,31 @@
+#!/bin/bash
+curl -sS https://getcomposer.org/installer | php
+
+sudo apt-get install php5-curl
+
+sudo apt-get install php5-intl
+
+valeur_postmaxsize=`grep 'post_max' /etc/php5/cli/php.ini | awk {'print $3'} | sed 's/M//g'`
+echo $valeur_postmaxsize
+
+if [ "$valeur_postmaxsize" -lt "30" ]
+  then
+    echo "on change les valeurs"
+    sudo sed -i 's#post_max_size = 8M#post_max_size = 30M#g' /etc/php5/apache2/php.ini
+    sudo sed -i 's#post_max_size = 8M#post_max_size = 30M#g' /etc/php5/cli/php.ini
+fi
+
+echo "Veuillez écrire le nom du dossier que vous allez créer :"
+
+read nomdudossier
+
+php composer.phar create-project thelia/thelia-project /var/www/html/$nomdudossier/ 2.2.2
+echo "http://localhost/"$nomdudossier
+
+
+HTTPDUSER=`ps aux | grep bin | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | awk {'print $1'}`
+echo $HTTPDUSER
+sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX  /var/www/html/$nomdudossier/cache /var/www/html/$nomdudossier/log /var/www/html/$nomdudossier/web /var/www/html/$nomdudossier/local
+sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX  /var/www/html/$nomdudossier/cache /var/www/html/$nomdudossier/log /var/www/html/$nomdudossier/web /var/www/html/$nomdudossier/local
+
+php /var/www/html/$nomdudossier/Thelia admin:create
