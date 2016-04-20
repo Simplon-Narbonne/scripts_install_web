@@ -12,10 +12,10 @@ mkdir /var/www/$1 Pour télécharger un zip par exemple : wget http://files.spip
 
 Dézipper : unzip -d spip$1 spip.zip
 
-Conditions
-if [ -d '/home/nicolas' ]
-then
-    echo "Le repertoire existe"
-else
-    echo "Le repertoire n'existe pas"
-fi
+Conditions  
+if [ -d '/home/nicolas' ]  
+then  
+    echo "Le repertoire existe"  
+else  
+    echo "Le repertoire n'existe pas"  
+fi  
