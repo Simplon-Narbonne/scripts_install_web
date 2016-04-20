@@ -21,7 +21,7 @@ tar zxvf archives.gz
 - bz:  
 tar xjvf archives.bz
 
-Utilisé l'occasion -C pour spécifier le chemin où désarchiver le contenu
+Utilisé l'option -C pour spécifier le chemin où désarchiver le contenu
 
 Conditions Si ... alors Sinon ...
 
