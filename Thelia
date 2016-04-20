@@ -1,5 +1,4 @@
 #!/bin/bash
-
 curl -sS https://getcomposer.org/installer | php
 
 sudo apt-get install php5-curl
@@ -21,3 +20,10 @@ echo "Veuillez écrire le nom du dossier que vous allez créer :"
 read nomdudossier
 
 php composer.phar create-project thelia/thelia-project /var/www/html/$nomdudossier/ 2.2.2
+echo "http://localhost/"$nomdudossier
+
+
+HTTPDUSER=`ps aux | grep bin | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | awk {'print $1'}`
+echo $HTTPDUSER
+sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX  /var/www/html/$nomdudossier/cache /var/www/html/$nomdudossier/log /var/www/html/$nomdudossier/web /var/www/html/$nomdudossier/local
+sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX  /var/www/html/$nomdudossier/cache /var/www/html/$nomdudossier/log /var/www/html/$nomdudossier/web /var/www/html/$nomdudossier/local
